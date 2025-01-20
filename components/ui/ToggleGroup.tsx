@@ -21,6 +21,12 @@ export default function ToggleGroup({ options, selectedValues, toggleKey, onTogg
     'dark:bg-black dark:text-white dark:outline-white outline-primary focus:outline-2 bg-white text-black hover:bg-gray-light hover:dark:bg-gray-dark';
   const activeClass = 'outline-white focus:outline focus:-outline-offset-4 hover:bg-primary-dark bg-primary text-white';
 
+  /**
+   * I'm using a link here to provide a fallback functionality while JS has not yet hydrated the anchor tags.
+   * This way, the user can still navigate between the different options with some reduced functionality in a no-JS environment.
+   * This technique is called "progressive enhancement".
+   * However, if thats not relevant to you, you can remove the Link component and use a button with an onClick handler without preventing the default behavior.
+   */
   return (
     <div className="flex flex-wrap gap-2">
       {options.map(option => {
