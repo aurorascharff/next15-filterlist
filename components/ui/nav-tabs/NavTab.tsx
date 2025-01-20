@@ -13,6 +13,7 @@ type Props = {
 export default function NavTab({ href, children, activeTab, tabId, header }: Props) {
   return (
     <Link
+      prefetch={true}
       scroll={false}
       className={cn(
         activeTab === tabId
