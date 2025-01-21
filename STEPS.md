@@ -9,7 +9,7 @@
 ## Setup and starting point
 
 - This is a project task manager demo app. The very talented designer (smile) of my current project Eileen Røsholt has designed the UI, and it's inspired by a feature we made in that project.
-- The setup is of course Next.js App Router, prisma and an Azure DB, tailwind CSS.
+- The setup is the Next.js App Router, prisma and an Azure DB, tailwind CSS.
 - Demo app, new tab: Very slow load, slowed down data fetches on purpose.
 - But, it's actually not bad. Try out tabs, try search with a basic form, see the result in the table.
 - The App Router is server first, and this is all server components, which means there is no js shipped to the client for these components. Just html, links and a form, which means things work without js.
@@ -46,9 +46,9 @@
 
 - For the initial load, I'm blocked by the awaits in the layout and I cant show anything on the screen.
 - Layout.tsx fetches are running sequentially even though they don't depend on each other.
-- The first through might be to run them in parallel with promise.all().That would help, but you would still be blocked in the layout.
+- The first thought might be to run them in parallel with promise.all().That would help, but you would still be blocked in the layout.
 - So, let's push the data fetches down from the layout to the components themselves.
-- Move projectDetails fetch to projectDetails.tsx, and move tabs fetch to tabs.tsx. Each component is now responsible for their own data, making them composable, (by colocating data and ui).
+- Move projectDetails fetch to projectDetails.tsx, and move tabs fetch to tabs.tsx. Each component is now responsible for their own data, colocating data and UI, making them composable.
 - Display suspense fallbacks with "loading..." around projectDetails, and around tabs. - Show the result: streaming in the RSCs using just a little js as they complete on the server. Running in parallel, have a lower total load time. We can actually show something on the screen and even interact with what we have (fill search).
 - However, did you see how the elements are visually unstable as they load. We got cumulative layout shift. Uncomfortable UX. Open CWV: CLS is no longer 0, and is very impactful on our scores.
 - We have to make loading fallbacks the right size. Replace with skeletons.
@@ -71,7 +71,7 @@ Let's continue to improve the UX, it is still not good here.
 - Uncomfortable experience in the search when using the default form submit, which is a GET pushing the values of the inputs inside the form to the URL. Full page and cant see active search.
 - Progressive enhancement of the base case search. Let's first use the new Nextjs 15 form component to make this a client side navigation when js is loaded: import, use form and add action, current route with empty string.
 - As a user, we want to know that something is happening in the app.
-- Since this is a form, we can head over to the Search.tsx and useFormStatus to get the submitting status. Enable the spinner.
+- Since this is a form, we can head over to the SearchStatus.tsx and useFormStatus to get the submitting status. Enable the spinner.
 - We can also consider adding an onChange handler, we want to push to the router. Add router, params, and searchParams.
 - Onchange newSearchParams. We gonna use the existing search params because we will keeping the state in the URL as a single source of truth, because the state of the app will be reloadable, shareable, and bookmarkable.
 - Add defaultvalue.
@@ -80,7 +80,7 @@ Let's continue to improve the UX, it is still not good here.
 - Notice the url is updating later because we are waiting for the await in the table to resolve before routing.
 - Explain useTransition: mark a state update as non-urgent and non-blocking and get pending state.
 - Use pending state to display user while waiting for the navigation to finish, which is the await in the table component. Reload.
-- Enable the spinner, while we are transitioning, we can see it.
+- While we are transitioning, we can see the spinner.
 - When this is hydrated by js, we have the progressive enhancement of the onchange and the spinner.
 - (Using a transition also batches the key strokes, leaving only one entry in the history.)
 
@@ -93,11 +93,11 @@ Let's continue to improve the UX, it is still not good here.
 - Show class group in layout, show pseudo-class group-has data-pending in page.tsx.
 - Show the result. Instead of showing nothing i.e using a suspense, we can show stale content and indicate that it's stale.
 - Instead of creating a global state manager, we can just use css. Add data-pending=isPending attribute.
-- But i also want responsive buttons, and were gonna use useOptimistic - it is a great tool to handle this. It will take in a state to show when nothing is pending, which is our "truth" of the url, and return an optimistic value and a trigger function.
+- But i also want responsive buttons, and were gonna use useOptimistic - it is a great tool to handle this. It will take in a state to show when no transition is pending, which is our "truth" of the url, and return an optimistic value and a trigger function.
 - Add useOptimistic to CategoryFilter.tsx. Set them inside the transition while waiting for the router to resolve. Showcase.
 - UseOptimistic will create a optimistic state on the client, but then throw away it away after the transition completes. The categories are instant and don't depend in the network.
 - Credit to Sam Selikoff with his post on buildui blog for this pattern.
-- (Batchign again, only updating once we are done selecting, leaving only one entry in the history.)
+- (Batching again, only updating once we are done selecting, leaving only one entry in the history.)
 
 ## Cache() getCategoriesMap in categories.ts
 
@@ -106,7 +106,7 @@ Let's continue to improve the UX, it is still not good here.
 - Add cache() React 19 function to getCategoriesMap in categories.ts. This enables per-render caching. Pay attention to the load time, refresh.
 - The load time is actually reduced by 500ms because the StatusTabs and the CategoryFilter are using the same return value of getCategoriesMap. And you can see it's only run once. Show terminal logs 1x.
 - Instead of passing the data down from a common parent (hoisting), the components all call the same cached data. This means that can keep using our pattern of fetching data inside the components themselves, maintaining composition.
-- Also useful when generating dynamic metadata
+- (Also useful when generating dynamic metadata)
 
 ## Turn on staleTimes in next.config.js
 
@@ -118,7 +118,7 @@ Let's continue to improve the UX, it is still not good here.
 ## Final demo
 
 - See content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
-- Reload, even filter before the streaming is complete, enable "testing" and "backend".
+- From "todo": reload, even filter before the streaming is complete, enable "testing" and "backend".
 - Search for "api", spinner. Enable/disable filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
 - And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed. (No race conditions because of useTransitions batching.)
