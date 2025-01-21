@@ -149,8 +149,9 @@ Let's continue to improve the UX, it is still not good here.
 - Demo clicking two params quickly, and show that the first update is discarded. This is because the updates are in seperate transitions. We would have to refactor this a little bit to make it work properly.
 - We can use a library like nuqs to achieve the same search param filtering, with less code and no bugs!
 - Switch branch to nuqs.
-- Using the same transition implementation, and using shallow:false to make the search param trigger a pagereload. And its also type-safe!
+- Using the same transition implementation, and using shallow:false to make the search param trigger a page reload. And its also type-safe!
 - The way nuqs is implemented, it actually manipulates the URL instantly.
+- In a real app you would probably use a library like this to handle search params.
 
 ## (Conclusion)
 
