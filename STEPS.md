@@ -134,7 +134,7 @@ Let's continue to improve the UX, it is still not good here.
 - (Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering).
 - Show the result: app is frozen again.
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
-- Open the second tab in new window.
+- Open the second tab in new window. Reload it.
 - Copy paste new tab: the app is now instantly showing useful content. This can be extremely impactful on a bigger application with larger or slower chunks of static content.
 - Reload, its just there right away because its static.
 
