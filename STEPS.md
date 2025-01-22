@@ -102,7 +102,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Cache() getCategoriesMap in categories.ts
 
-- Let's consider the data fetching in the layout.
+- UX is good now. Let's consider the data fetching in the layout.
 - We are fetching the categories twice for every render - once for the task summary and once for the category filter. Show terminal logs 2x. We can reuse the the return value of getCategoriesMap.
 - Add cache() React 19 function to getCategoriesMap in categories.ts. This enables per-render caching. Pay attention to the load time, refresh.
 - The load time is actually reduced by 500ms because the StatusTabs and the CategoryFilter are using the same return value of getCategoriesMap. And you can see it's only run once. Show terminal logs 1x.
@@ -120,7 +120,7 @@ Let's continue to improve the UX, it is still not good here.
 
 - From "todo": see content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
 - Reload, even filter before the streaming is complete, enable "testing" and "backend".
-- Search for "api", spinner. Enable/disable filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
+- Search for "api", spinner. Disable "testing" filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
 - And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed. (No race conditions because of useTransitions batching.)
 - No useEffects or useStates in sight. We are making interactive apps without that in this new world of React Server Components.
