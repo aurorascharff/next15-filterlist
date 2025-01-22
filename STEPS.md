@@ -153,8 +153,8 @@ Let's continue to improve the UX, it is still not good here.
 - For the real world, we can use a library to achieve the same search param filtering, with less code (and no bugs)!
 - Switch branch to nuqs. Nuqs is a type-safe search param manager for React.
 - Using the same transition implementation, and using shallow:false to make the search param trigger a page reload. And its also type-safe!
-- The way nuqs is implemented, it actually manipulates the URL instantly.
-- In a real app you would probably use a library like this to handle search params.
+- The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.
+- In a production app you would probably use a library like this to handle search params. So I thought it's nice to share it.
 
 ## (Conclusion)
 
