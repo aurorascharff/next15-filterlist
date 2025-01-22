@@ -89,14 +89,15 @@ Let's continue to improve the UX, it is still not good here.
 - Add the CategoryFilter component to layout.tsx. It takes in a categories promise and reads it with use. Pass it down with a new data fetch and suspend with correct skeleton, demo load.
 - This component is filtering with searchParams again, using the URL as the state again. However when we click the tabs, we don't see anything happening.
 - Pay attention to the URL. It's not updating until the new table in page.tsx is done with its await query and finished rendering on the server. Therefore we cannot see the active filters right away.
-- Let's mark the loading state. Add startTransition around router.push. How can we use this isPending? Not a lot of options, not suitable for a spinner.
+- Let's mark the loading state, another transition. Add startTransition around router.push. How can we use this isPending? Not a lot of options, not suitable for a spinner.
+- Add the pending to data-pending.
 - Show class group in layout, show pseudo-class group-has data-pending in page.tsx.
 - Show the result. Instead of showing nothing i.e using a suspense, we can show stale content and indicate that it's stale.
 - Instead of creating a global state manager, we can just use css. Add data-pending=isPending attribute.
 - But i also want responsive buttons, and were gonna use useOptimistic - it is a great tool to handle this. It will take in a state to show when no transition is pending, which is our "truth" of the url, and return an optimistic value and a trigger function.
 - Add useOptimistic to CategoryFilter.tsx. Set them inside the transition while waiting for the router to resolve. Showcase.
 - UseOptimistic will create a optimistic state on the client, but then throw away it away after the transition completes. The categories are instant and don't depend in the network.
-- Credit to Sam Selikoff with his post on buildui blog for this pattern.
+- (Credit to Sam Selikoff with his post on buildui blog for this pattern).
 - (Batching again, only updating once we are done selecting, leaving only one entry in the history.)
 
 ## Cache() getCategoriesMap in categories.ts
@@ -117,8 +118,8 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Final demo
 
-- See content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
-- From "todo": reload, even filter before the streaming is complete, enable "testing" and "backend".
+- From "todo": see content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
+- Reload, even filter before the streaming is complete, enable "testing" and "backend".
 - Search for "api", spinner. Enable/disable filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
 - And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed. (No race conditions because of useTransitions batching.)
