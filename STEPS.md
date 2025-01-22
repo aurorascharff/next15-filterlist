@@ -150,7 +150,7 @@ Let's continue to improve the UX, it is still not good here.
 ## (Note on nuqs)
 
 - (Demo clicking two params quickly, and show that the first update is discarded. This is because the updates are in seperate transitions. We would have to refactor this a little bit to make it work properly).
-- For the real world, we can use a library to achieve the same search param filtering, with less code, and a more robust implementation.
+- For the real world, we would want to use a library to achieve the search param filtering. It will be less code, and a more robust implementation that avoids certain race conditions.
 - Switch branch to nuqs. Nuqs is a type-safe search param manager for React.
 - Using the same transition implementation, and using shallow:false to make the search param trigger a page reload.
 - The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.
