@@ -29,7 +29,7 @@
 ## Go through the code
 
 - Async layout.tsx server component
-- Show the different data files just querying a db, been made dynamic with connection() and slowed with slow(). (In the future of Next.js with dynamicIO, this would become dynamic by default and we would rather opt in to static.)
+- Show the different data access layer files just querying a db, been made dynamic with connection() and slowed with slow(). (In the future of Next.js with dynamicIO, this would become dynamic by default and we would rather opt in to static.)
 - Mention each component in the file, search and form, children:
 - Dynamic route [tab], async page.tsx server components, we are querying our db based on filters directly based on the filters inside this server component.
 - Dynamic requests, static is easy because this could be run in the build, but this is dynamic data. We have to await at reqeust time.
@@ -79,7 +79,7 @@ Let's continue to improve the UX, it is still not good here.
 - Add "use client".
 - Notice the url is updating later because we are waiting for the await in the table to resolve before routing. Again, the user should see the pending state.
 - Explain useTransition: mark a state update as non-urgent and non-blocking and get pending state.
-- Wrap with startTransition, use pending state to display feedback while waiting for the navigation to finish, which is the await in the table component. Reload.
+- Wrap with startTransition, use pending state to display feedback while waiting for the navigation to finish, which is the await in the table component.
 - While we are transitioning, we can see the spinner.
 - When this is hydrated by js, we have the progressive enhancement of the client side nav, onchange and the spinner.
 - (Using a transition also batches the key strokes, leaving only one entry in the history.)
