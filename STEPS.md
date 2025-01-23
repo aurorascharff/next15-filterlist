@@ -71,9 +71,10 @@ Let's continue to improve the UX, it is still not good here.
 - Open Search.tsx. Using the default form submit, which is a GET pushing the values of the inputs inside the form to the URL. Uncomfortable default experience which we often prevent with preventDefault. Full page and cant see active search.
 - Progressive enhancement of the base case search. Let's first use the new Nextjs 15 form component to make this a client side navigation when js is loaded: import, use form and add action, current route with empty string.
 - As a user, we want to know that something is happening in the app.
-- Since this is a form, we can head over to the SearchStatus.tsx and useFormStatus to get the submitting status. Enable the spinner.
-- We can also consider adding an onChange handler, we want to push to the router. Add router and searchParams.
-- Onchange newSearchParams. We gonna use the existing search params because we will keeping the state in the URL as a single source of truth, because the state of the app will be reloadable, shareable, and bookmarkable.
+- (Since this is a form, we can head over to the SearchStatus.tsx and useFormStatus to get the submitting status. Enable the spinner.)
+- (We can also consider adding an onChange handler, we want to push to the router).
+- Add router and searchParams.
+- We are gonna use the existing search params because we will keeping the state in the URL as a single source of truth, because the state of the app will be reloadable, shareable, and bookmarkable.
 - Add q and defaultvalue.
 - Add activetab (and params) to reset with a key.
 - Add "use client".
