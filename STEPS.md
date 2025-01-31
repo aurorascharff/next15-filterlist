@@ -29,7 +29,7 @@
 ## Go through the code
 
 - Async layout.tsx server component
-- Show the different data files just querying a db, been made dynamic with connection() and slowed with slow(). (In the future of Next.js with dynamicIO, this would become dynamic by default and we would rather opt in to static.)
+- Show the different data access layer files just querying a db, been made dynamic with connection() and slowed with slow(). (In the future of Next.js with dynamicIO, this would become dynamic by default and we would rather opt in to static.)
 - Mention each component in the file, search and form, children:
 - Dynamic route [tab], async page.tsx server components, we are querying our db based on filters directly based on the filters inside this server component.
 - Dynamic requests, static is easy because this could be run in the build, but this is dynamic data. We have to await at reqeust time.
@@ -71,15 +71,15 @@ Let's continue to improve the UX, it is still not good here.
 - Open Search.tsx. Using the default form submit, which is a GET pushing the values of the inputs inside the form to the URL. Uncomfortable default experience which we often prevent with preventDefault. Full page and cant see active search.
 - Progressive enhancement of the base case search. Let's first use the new Nextjs 15 form component to make this a client side navigation when js is loaded: import, use form and add action, current route with empty string.
 - As a user, we want to know that something is happening in the app.
-- Since this is a form, we can head over to the SearchStatus.tsx and useFormStatus to get the submitting status. Enable the spinner.
-- We can also consider adding an onChange handler, we want to push to the router. Add router and searchParams.
-- Onchange newSearchParams. We gonna use the existing search params because we will keeping the state in the URL as a single source of truth, because the state of the app will be reloadable, shareable, and bookmarkable.
+- (Since this is a form, we can head over to the SearchStatus.tsx and useFormStatus to get the submitting status. Enable the spinner.)
+- We can also add an onChange handler, we want to push to the router. Add router and searchParams.
+- We are gonna use the existing search params because we will keeping the state in the URL as a single source of truth, because the state of the app will be reloadable, shareable, and bookmarkable.
 - Add q and defaultvalue.
 - Add activetab (and params) to reset with a key.
 - Add "use client".
 - Notice the url is updating later because we are waiting for the await in the table to resolve before routing. Again, the user should see the pending state.
 - Explain useTransition: mark a state update as non-urgent and non-blocking and get pending state.
-- Wrap with startTransition, use pending state to display feedback while waiting for the navigation to finish, which is the await in the table component. Reload.
+- Wrap with startTransition, use pending state to display feedback while waiting for the navigation to finish, which is the await in the table component.
 - While we are transitioning, we can see the spinner.
 - When this is hydrated by js, we have the progressive enhancement of the client side nav, onchange and the spinner.
 - (Using a transition also batches the key strokes, leaving only one entry in the history.)
@@ -150,7 +150,7 @@ Let's continue to improve the UX, it is still not good here.
 ## (Note on nuqs)
 
 - (Demo clicking two params quickly, and show that the first update is discarded. This is because the updates are in seperate transitions. We would have to refactor this a little bit to make it work properly).
-- I want to show you an improvement I've made. It's a version using a library called nuqs. Switch branch to nuqs.
+- I want to show you an improvement I've made. It's a version using a library called nuqs. Switch branch to nuqs. Reload.
 - Nuqs is a type-safe search param manager for React.
 - In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a page reload. Show also CategoryFilter.tsx.
 - The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.

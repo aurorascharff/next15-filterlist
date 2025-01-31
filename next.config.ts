@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
     return [
       {
         destination: '/todo',
-        permanent: true,
+        permanent: false,
         source: '/',
       },
     ];
