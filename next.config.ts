@@ -12,11 +12,11 @@ const nextConfig: NextConfig = {
   },
   redirects: async () => {
     return [
-      {
-        destination: '/todo',
-        permanent: false,
-        source: '/',
-      },
+      // {
+      //   destination: '/todo',
+      //   permanent: false,
+      //   source: '/',
+      // },
     ];
   },
 };
