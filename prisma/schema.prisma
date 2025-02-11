@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-    provider          = "sqlserver"
-    url               = env("DATABASE_URL") // Change to "file:./dev.db" with sqlite
-    shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Remove with sqlite
+    provider = "postgresql"
+    url      = env("DATABASE_URL") // Change to "file:./dev.db" with sqlite
+    // shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // For sqlserver, remove with sqlite and postgres
 }
 
 model Task {
