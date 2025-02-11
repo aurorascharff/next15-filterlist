@@ -2,14 +2,14 @@
 
 ## (Introduction)
 
-- Aurora, web dev, norway, consultant at Inmeta in oslo
+- Aurora, web dev, norway, consultant at Crayon Consulting in oslo
 - Excited to speak here today, because i'll be teaching you how to elevate speed, interactivity and user experience with React Server Components.
 - I will be coding something inspired by a feature i’ve built for my current consultancy project, where im actively using React Server Components.
 
 ## Setup and starting point
 
 - This is a project task manager demo app. The very talented designer (smile) of my current project Eileen Røsholt has designed the UI, and it's inspired by a feature we made in that project.
-- The setup is the Next.js App Router, prisma and an Azure DB, tailwind CSS.
+- The setup is the Next.js App Router, Prisma ORM and an Prisma Postgres DB, Tailwind CSS.
 - Demo app, new tab: Very slow load, slowed down data fetches on purpose.
 - But, it's actually not bad. Try out tabs, try search with a basic form, see the result in the table.
 - The App Router is server first, and this is all server components, which means there is no js shipped to the client for these components. Just html, links and a form, which means things work without js.
