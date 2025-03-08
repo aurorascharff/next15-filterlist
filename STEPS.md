@@ -111,7 +111,7 @@ Let's continue to improve the UX, it is still not good here.
 ## Turn on staleTimes in next.config.js
 
 - Enable more caching.
-- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh.
+- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh. In the future, we will be able to use the new "use cache" directive in Next.js for more granular control, but it's not ready yet.
 - Enable staleTimes in next.config.js. This will cache the rsc payload on the client for the route page.tsx, the table. Refresh page.
 - Show the result. Click the same twice. Now we dont have to regenerate the server component every time.
 
