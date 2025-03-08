@@ -121,7 +121,7 @@ Let's continue to improve the UX, it is still not good here.
 - Reload, even filter before the streaming is complete, enable "testing" and "backend".
 - Search for "api", spinner. Disable "testing" filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
-- And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed. (No race conditions because of useTransitions batching.)
+- And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed and partially hydrating the app. (No race conditions because of useTransitions batching.)
 - No useEffects or useStates in sight. We are making interactive apps without that in this new world of React Server Components.
 
 ## Improve Speed Index with Partial Pre-rendering
