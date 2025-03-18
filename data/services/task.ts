@@ -27,7 +27,10 @@ export async function getTasks(filter?: { q?: string; status?: TaskStatus; categ
       AND: [
         filter?.q
           ? {
-              OR: [{ title: { contains: filter.q } }, { description: { contains: filter.q } }],
+              OR: [
+                { title: { contains: filter.q.toLowerCase(), mode: 'insensitive' } },
+                { description: { contains: filter.q.toLowerCase(), mode: 'insensitive' } },
+              ],
             }
           : {},
         filter?.status ? { status: filter.status } : {},
