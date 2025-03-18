@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 import { useFormStatus } from 'react-dom';
 import { SearchIcon } from './icons/SearchIcon';
 import { SpinnerIcon } from './icons/SpinnerIcon';
 
-export default function SearchStatus({ searching }: { searching: boolean }) {
+export default function SearchStatus({ searching }: { searching?: boolean }) {
   const { pending } = useFormStatus();
   const isSearching = searching || pending;
 

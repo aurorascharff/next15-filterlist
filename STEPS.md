@@ -107,12 +107,11 @@ Let's continue to improve the UX, it is still not good here.
 - Add cache() React 19 function to getCategoriesMap in categories.ts. This enables per-render caching. Pay attention to the load time, refresh.
 - The load time is actually reduced by 500ms because the StatusTabs and the CategoryFilter are using the same return value of getCategoriesMap. And you can see it's only run once. Show terminal logs 1x.
 - Instead of passing the data down from a common parent (hoisting), the components all call the same cached data. This means that can keep using our pattern of fetching data inside the components themselves, maintaining composition.
-- (Also useful when generating dynamic metadata)
 
 ## Turn on staleTimes in next.config.js
 
 - Enable more caching.
-- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh.
+- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh. In the future, we will be able to use the new "use cache" directive in Next.js for more granular control, but it's not ready yet.
 - Enable staleTimes in next.config.js. This will cache the rsc payload on the client for the route page.tsx, the table. Refresh page.
 - Show the result. Click the same twice. Now we dont have to regenerate the server component every time.
 
@@ -122,7 +121,7 @@ Let's continue to improve the UX, it is still not good here.
 - Reload, even filter before the streaming is complete, enable "testing" and "backend".
 - Search for "api", spinner. Disable "testing" filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
-- And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed. (No race conditions because of useTransitions batching.)
+- And this is very robust: progressively enhanced the no-js base case, and just added a low amount of js, using it only where needed and partially hydrating the app. (No race conditions because of useTransitions batching.)
 - No useEffects or useStates in sight. We are making interactive apps without that in this new world of React Server Components.
 
 ## Improve Speed Index with Partial Pre-rendering
