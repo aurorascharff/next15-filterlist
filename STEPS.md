@@ -91,7 +91,7 @@ Let's continue to improve the UX, it is still not good here.
 - Pay attention to the URL. It's not updating until the new table in page.tsx is done with its await query and finished rendering on the server. Therefore we cannot see the active filters right away.
 - Let's mark the loading state, another transition. Add startTransition around router.push. How can we use this isPending? Not a lot of options, not suitable for a spinner.
 - Add the pending to data-pending.
-- Show class group in layout, show pseudo-class group-has data-pending in page.tsx.
+- Show class group in layout, show pseudo-class group-has data-pending in page.tsx. Reload.
 - Show the result. Instead of showing nothing i.e using a suspense, we can show stale content and indicate that it's stale.
 - Instead of creating a global state manager, we can just use css. Add data-pending=isPending attribute.
 - But i also want responsive buttons, and were gonna use useOptimistic - it is a great tool to handle this. It will take in a state to show when no transition is pending, which is our "truth" of the url, and return an optimistic value and a trigger function.
