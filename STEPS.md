@@ -95,7 +95,7 @@ Let's continue to improve the UX, it is still not good here.
 - Show the result. Instead of showing nothing i.e using a suspense, we can show stale content and indicate that it's stale.
 - Instead of creating a global state manager, we can just use css. Add data-pending=isPending attribute.
 - But i also want responsive buttons, and were gonna use useOptimistic - it is a great tool to handle this. It will take in a state to show when no transition is pending, which is our "truth" of the url, and return an optimistic value and a trigger function.
-- Add useOptimistic to CategoryFilter.tsx. Set them inside the transition while waiting for the router to resolve. Showcase.
+- Add useOptimistic to CategoryFilter.tsx. Set them inside the transition while waiting for the router to resolve. Reload, showcase.
 - UseOptimistic will create a optimistic state on the client, but then throw away it away after the transition completes. The categories are instant and don't depend in the network.
 - (Credit to Sam Selikoff with his post on buildui blog for this pattern).
 - (Batching again, only updating once we are done selecting, leaving only one entry in the history.)
@@ -149,12 +149,12 @@ Let's continue to improve the UX, it is still not good here.
 ## (Note on nuqs)
 
 - (Demo clicking two params quickly, and show that the first update is discarded. This is because the updates are in seperate transitions. We would have to refactor this a little bit to make it work properly).
+- In the real world, we would want to use a library to achieve the search param filtering. It will be less code, and a more robust implementation that avoids certain race conditions.
 - I want to show you an improvement I've made. It's a version using a library called nuqs. Switch branch to nuqs. Reload.
 - Nuqs is a type-safe search param manager for React.
 - In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a page reload. Show also CategoryFilter.tsx.
 - The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.
-- We can click lots of filters quickly and across the app without any problem.
-- For the real world, we would want to use a library to achieve the search param filtering. It will be less code, and a more robust implementation that avoids certain race conditions. So thats why I'm showing you this.
+- We can click lots of filters quickly and across the app without any problem. Probably you want to use this in a real world app.
 
 ## (Conclusion)
 
