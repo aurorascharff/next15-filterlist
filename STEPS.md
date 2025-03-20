@@ -61,7 +61,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ### Mark active tab and read promise with use in Tabs.tsx
 
-- Let's start by showing the currently active tab. Add useParams and get active tab. Make client component. We cannot have this async now, and we cant access db anyway here, we have to fetch the data outside. Put the data outside.
+- Let's start by showing the currently active tab. Add useParams and get active tab. Make client component. We cannot have this async now, and we cant access db anyway here, we have to fetch the data outside. Hoist the data to the nearest server component parent, which is the layout.
 - But we don't want to get back to blocking our layout. Lets remove the await and pass it down to the Tabs as a promise.
 - Then we can read the promise with use() which will resolve it, and the component will suspend the same way allowing us to see the fallback.
 - Now we can see the active tabs and navigate between them.
@@ -152,7 +152,7 @@ Let's continue to improve the UX, it is still not good here.
 - In the real world, we would want to use a library to achieve the search param filtering. It will be less code, and a more robust implementation that avoids certain race conditions.
 - I want to show you an improvement I've made. It's a version using a library called nuqs. Switch branch to nuqs. Reload.
 - Nuqs is a type-safe search param manager for React.
-- In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a page reload. Show also CategoryFilter.tsx.
+- In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a network rquest to the server. Show also CategoryFilter.tsx.
 - The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.
 - We can click lots of filters quickly and across the app without any problem. Probably you want to use this in a real world app.
 
