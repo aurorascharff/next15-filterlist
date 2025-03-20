@@ -154,7 +154,7 @@ Let's continue to improve the UX, it is still not good here.
 - Nuqs is a type-safe search param manager for React.
 - In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a network rquest to the server. Show also CategoryFilter.tsx.
 - The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.
-- We can click lots of filters quickly and across the app without any problem. Probably you want to use this in a real world app.
+- We can click lots of filters quickly and across the app without any problem. Probably you want to use this in a real world app rather than do this manual work that i was doing.
 
 ## (Conclusion)
 
