@@ -117,7 +117,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Final demo
 
-- From "todo": see content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
+- From "todo", zoom out: see content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
 - Reload, even filter before the streaming is complete, enable "testing" and "backend".
 - Search for "api", spinner. Disable "testing" filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
