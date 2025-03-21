@@ -5,7 +5,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { Suspense } from 'react';
 import CategoryFilter, { CategoryFilterSkeleton } from '@/components/CategoryFilter';
 import LoadTime from '@/components/LoadTime';
-import ProjectInfo from '@/components/ProjectInfo';
+import ProjectInfo, { ProjectInfoSkeleton } from '@/components/ProjectInfo';
 import Search, { SearchSkeleton } from '@/components/Search';
 import StatusTabs, { StatusTabsSkeleton } from '@/components/StatusTabs';
 import { getCategoriesMap } from '@/data/services/category';
@@ -31,7 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="group flex flex-col gap-10">
             <div className="flex flex-col gap-6">
               <h1>Project information</h1>
-              <ProjectInfo />
+              <Suspense fallback={<ProjectInfoSkeleton />}>
+                <ProjectInfo />
+              </Suspense>
             </div>
             <div className="flex flex-col gap-6">
               <h2>Task list</h2>
