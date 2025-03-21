@@ -10,6 +10,7 @@ export async function getTasks(filter?: { q?: string; status?: TaskStatus; categ
   console.log('getTasks', filter);
 
   await slow(2000);
+  await connection();
 
   return prisma.task.findMany({
     include: {
