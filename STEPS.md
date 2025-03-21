@@ -135,6 +135,7 @@ Let's continue to improve the UX, it is still not good here.
 - Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project. (The error is now gone).
 - Now, it will stream the first time, then second time it's cached!
 - I also want to use Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
+- (Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering).
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
 - Open the second tab in new window. Reload it.
 - Copy paste new tab: the app is now instantly showing useful content. This can be extremely impactful on a bigger application with larger or slower chunks of static content.
