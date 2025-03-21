@@ -6,7 +6,7 @@ import { slow } from '@/utils/slow';
 
 export async function getProject() {
   'use cache';
-  cacheLife('hours');
+  cacheLife('days');
 
   console.log('getProject');
 
