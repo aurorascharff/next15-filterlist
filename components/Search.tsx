@@ -3,7 +3,6 @@
 import Form from 'next/form';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import React, { useTransition } from 'react';
-import { reval } from '@/data/revalidate';
 import type { TaskStatus } from '@/types/task';
 import SearchStatus from './ui/SearchStatus';
 
@@ -41,9 +40,6 @@ export default function Search() {
         />
         <SearchStatus searching={isPending} />
       </Form>
-      <form action={reval}>
-        <button type="submit">Reval</button>
-      </form>
     </>
   );
 }
