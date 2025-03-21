@@ -7,9 +7,9 @@ import { slow } from '@/utils/slow';
 import { getCategoriesMap } from './category';
 
 export async function getTasks(filter?: { q?: string; status?: TaskStatus; categories?: number[] }) {
-  'use cache';
   console.log('getTasks', filter);
 
+  await connection();
   await slow(2000);
 
   return prisma.task.findMany({
