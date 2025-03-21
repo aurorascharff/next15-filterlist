@@ -15,32 +15,30 @@ export default function Search() {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <>
-      <Form action="" className="relative flex w-full flex-col gap-1 sm:w-fit" key={activeTab}>
-        <label className="font-semibold uppercase" htmlFor="search">
-          Search
-        </label>
-        <input
-          autoComplete="off"
-          id="search"
-          onChange={e => {
-            const newSearchParams = new URLSearchParams(searchParams.toString());
-            newSearchParams.set('q', e.target.value);
-            startTransition(() => {
-              router.push(`?${newSearchParams.toString()}`, {
-                scroll: false,
-              });
+    <Form action="" className="relative flex w-full flex-col gap-1 sm:w-fit" key={activeTab}>
+      <label className="font-semibold uppercase" htmlFor="search">
+        Search
+      </label>
+      <input
+        autoComplete="off"
+        id="search"
+        onChange={e => {
+          const newSearchParams = new URLSearchParams(searchParams.toString());
+          newSearchParams.set('q', e.target.value);
+          startTransition(() => {
+            router.push(`?${newSearchParams.toString()}`, {
+              scroll: false,
             });
-          }}
-          defaultValue={q}
-          className="w-full pl-10 sm:w-96"
-          name="q"
-          placeholder="Search in task title or description..."
-          type="search"
-        />
-        <SearchStatus searching={isPending} />
-      </Form>
-    </>
+          });
+        }}
+        defaultValue={q}
+        className="w-full pl-10 sm:w-96"
+        name="q"
+        placeholder="Search in task title or description..."
+        type="search"
+      />
+      <SearchStatus searching={isPending} />
+    </Form>
   );
 }
 
