@@ -9,8 +9,8 @@ import { getCategoriesMap } from './category';
 export async function getTasks(filter?: { q?: string; status?: TaskStatus; categories?: number[] }) {
   console.log('getTasks', filter);
 
-  await slow(2000);
   await connection();
+  await slow(2000);
 
   return prisma.task.findMany({
     include: {
@@ -40,8 +40,8 @@ export async function getTasks(filter?: { q?: string; status?: TaskStatus; categ
 export async function getTaskSummary(): Promise<TaskSummary> {
   console.log('getTaskSummary');
 
-  await slow(1500);
   await connection();
+  await slow(1500);
 
   const categoriesMap = await getCategoriesMap();
 
