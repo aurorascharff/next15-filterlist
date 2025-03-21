@@ -29,7 +29,7 @@
 ## Go through the code
 
 - Async layout.tsx server component
-- Show the different data files just querying a db, been made dynamic with connection() and slowed with slow().
+- Show the different data access layer files just querying a db, been made dynamic with connection() and slowed with slow().
 - Mention each component in the file, search and form, children:
 - Dynamic route [tab], async page.tsx server components, we are querying our db based on filters directly based on the filters inside this server component.
 - Dynamic requests, static is easy because this could be run in the build, but this is dynamic data. We have to await at reqeust time.
