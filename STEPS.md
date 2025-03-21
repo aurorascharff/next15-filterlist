@@ -126,12 +126,13 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Improve Speed Index with Partial Pre-rendering
 
-- Let's explore some experimental upcming features in Next.js that I am looking forward to.
+- Let's explore some experimental upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
 - This could be static data that we can revalidate on a time based interval using for example fetch options, or, the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
 - (Turn on DynamicIO: remove all connection() from the data fetches. Dynamic by default. Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering.)
 - (Show the result: We are getting errors in the application! These will continue to improve. Without dynamicIO, you would not be notified of this, and espeically new Next.js devs did not know why their navigations felt slow or how to start debugging it. If you didn't do it right from the start, it would be very hard to debug and improve later.)
-- Add "use cache" and cacheLife("days"). Can also revalidate with cacheTag in server actions or API endpoints, if for example I were to update a project. (The error is now gone).
+- Add "use cache" and cacheLife("days"). Remove await connection.
+- Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project. (The error is now gone).
 - Now, it will stream the first time, then second time it's cached!
 - I also want to use Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
