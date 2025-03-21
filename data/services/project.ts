@@ -1,14 +1,12 @@
 import 'server-only';
 
 import { cacheLife } from 'next/dist/server/use-cache/cache-life';
-import { cacheTag } from 'next/dist/server/use-cache/cache-tag';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
 
 export async function getProject() {
   'use cache';
   cacheLife('hours');
-  cacheTag('cached-content');
 
   console.log('getProject');
 
