@@ -1,5 +1,6 @@
 'use client';
 
+import { revalidateTag } from 'next/cache';
 import Form from 'next/form';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import React, { useTransition } from 'react';
@@ -38,6 +39,12 @@ export default function Search() {
         type="search"
       />
       <SearchStatus searching={isPending} />
+      <button
+        onClick={async () => {
+          'use server';
+          revalidateTag('cached-content');
+        }}
+      />
     </Form>
   );
 }
