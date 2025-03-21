@@ -135,7 +135,7 @@ Let's continue to improve the UX, it is still not good here.
 - Now, it will stream the first time, then second time it's cached!
 - I also want to use Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
-- Open the second tab in new window.
+- Open the second tab in new window. Reload it.
 - Copy paste new tab: the app is now instantly showing useful content. This can be extremely impactful on a bigger application with larger or slower chunks of static content.
 - Reload, its just there right away because its static.
 
