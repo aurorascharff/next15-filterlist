@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { connection } from 'next/server';
 import { prisma } from '@/db';
 import type { TaskStatus, TaskSummary } from '@/types/task';
 import { slow } from '@/utils/slow';
@@ -39,6 +40,7 @@ export async function getTaskSummary(): Promise<TaskSummary> {
   console.log('getTaskSummary');
 
   await slow(1500);
+  await connection();
 
   const categoriesMap = await getCategoriesMap();
 

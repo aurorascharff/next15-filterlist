@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { cacheLife } from 'next/dist/server/use-cache/cache-life';
+import { connection } from 'next/server';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
 
@@ -10,6 +11,7 @@ export async function getProject() {
 
   console.log('getProject');
 
+  await connection();
   await slow(500);
 
   const project = await prisma.project.findFirst({
