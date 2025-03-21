@@ -61,7 +61,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ### Mark active tab and read promise with use in Tabs.tsx
 
-- Let's start by showing the currently active tab. Add useParams and get active tab. Make client component. We cannot have this async now, and we cant access db anyway here, we have to fetch the data outside. Put the data outside.
+- Let's start by showing the currently active tab. Add useParams and get active tab. Make client component. We cannot have this async now, and we cant access db anyway here, we have to fetch the data outside. Hoist the data to the nearest server component parent, which is the layout.
 - But we don't want to get back to blocking our layout. Lets remove the await and pass it down to the Tabs as a promise.
 - Then we can read the promise with use() which will resolve it, and the component will suspend the same way allowing us to see the fallback.
 - Now we can see the active tabs and navigate between them.
@@ -91,11 +91,11 @@ Let's continue to improve the UX, it is still not good here.
 - Pay attention to the URL. It's not updating until the new table in page.tsx is done with its await query and finished rendering on the server. Therefore we cannot see the active filters right away.
 - Let's mark the loading state, another transition. Add startTransition around router.push. How can we use this isPending? Not a lot of options, not suitable for a spinner.
 - Add the pending to data-pending.
-- Show class group in layout, show pseudo-class group-has data-pending in page.tsx.
+- Show class group in layout, show pseudo-class group-has data-pending in page.tsx. Reload.
 - Show the result. Instead of showing nothing i.e using a suspense, we can show stale content and indicate that it's stale.
 - Instead of creating a global state manager, we can just use css. Add data-pending=isPending attribute.
 - But i also want responsive buttons, and were gonna use useOptimistic - it is a great tool to handle this. It will take in a state to show when no transition is pending, which is our "truth" of the url, and return an optimistic value and a trigger function.
-- Add useOptimistic to CategoryFilter.tsx. Set them inside the transition while waiting for the router to resolve. Showcase.
+- Add useOptimistic to CategoryFilter.tsx. Set them inside the transition while waiting for the router to resolve. Reload, showcase.
 - UseOptimistic will create a optimistic state on the client, but then throw away it away after the transition completes. The categories are instant and don't depend in the network.
 - (Credit to Sam Selikoff with his post on buildui blog for this pattern).
 - (Batching again, only updating once we are done selecting, leaving only one entry in the history.)
@@ -117,7 +117,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Final demo
 
-- From "todo": see content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
+- From "todo", zoom out: see content right away, and interact with tabs while streaming in the server components as they finish rendering on the server. And we have some nice caching here.
 - Reload, even filter before the streaming is complete, enable "testing" and "backend".
 - Search for "api", spinner. Disable "testing" filter, see that my content is stale. Reload/share/bookmark the page and have the same state.
 - Greatly improved UX. Even though the data fetches are still extremely slow, the app feels super responsive.
@@ -149,12 +149,12 @@ Let's continue to improve the UX, it is still not good here.
 ## (Note on nuqs)
 
 - (Demo clicking two params quickly, and show that the first update is discarded. This is because the updates are in seperate transitions. We would have to refactor this a little bit to make it work properly).
-- I want to show you an improvement I've made. It's a version using a library called nuqs. Switch branch to nuqs. Reload.
-- Nuqs is a type-safe search param manager for React.
-- In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a page reload. Show also CategoryFilter.tsx.
+- In the real world, we would want to use a library to achieve the search param filtering. It will be less code, and a more robust implementation that avoids certain race conditions.
+- I want to show you an improvement I've made, as a bonus. It's a version using a library called nuqs. Switch branch to nuqs. Reload twice!
+- Nuqs is a type-safe search param manager for React. It will simplify the code a lot, and remove certain edge cases that could occur in me previous implementation.
+- In Search.tsx: using the same transition implementation, and using shallow:false to make the search param trigger a network rquest to the server. Show also CategoryFilter.tsx.
 - The way nuqs is implemented, it actually manipulates the URL instantly. No need to implement our own useOptimistic logic.
-- We can click lots of filters quickly and across the app without any problem.
-- For the real world, we would want to use a library to achieve the search param filtering. It will be less code, and a more robust implementation that avoids certain race conditions. So thats why I'm showing you this.
+- We can click lots of filters quickly and across the app without any problem. Probably you want to use this in a real world app rather than do this manual work that i was doing.
 
 ## (Conclusion)
 
