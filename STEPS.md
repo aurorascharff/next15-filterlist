@@ -29,7 +29,7 @@
 ## Go through the code
 
 - Async layout.tsx server component
-- Show the different data access layer files just querying a db, been made dynamic with connection() and slowed with slow(). (In the future of Next.js with dynamicIO, this would become dynamic by default and we would rather opt in to static.)
+- Show the different data access layer files just querying a db, been made dynamic with connection() and slowed with slow().
 - Mention each component in the file, search and form, children:
 - Dynamic route [tab], async page.tsx server components, we are querying our db based on filters directly based on the filters inside this server component.
 - Dynamic requests, static is easy because this could be run in the build, but this is dynamic data. We have to await at reqeust time.
@@ -128,11 +128,14 @@ Let's continue to improve the UX, it is still not good here.
 
 - Let's explore some canary upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
-- This could be static data that we can revalidate on a time based interval using for example fetch options, or, in the future the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
-- I want try the expermiental feature Partial Prerendering. This will allow me to partially the layout as static - everything not inside suspense boundaries. (In the future, that would be determined with "use cache").
-- Remove the suspense around the projectDetails. Remove the connection() from the data fetch.
+- This could be static data that we can revalidate on a time based interval using for example fetch options, or, the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
+- (Turn on DynamicIO: remove all connection() from the data fetches. Dynamic by default. Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering.)
+- (Show the result: We are getting errors in the application! These will continue to improve. Without dynamicIO, you would not be notified of this, and espeically new Next.js devs did not know why their navigations felt slow or how to start debugging it. If you didn't do it right from the start, it would be very hard to debug and improve later.)
+- Add "use cache" and cacheLife("days"). Remove await connection.
+- Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project. (The error is now gone).
+- Now, it will stream the first time, then second time it's cached!
+- I also want to use Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
 - (Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering).
-- Show the result: app is frozen again.
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
 - Open the second tab in new window. Reload it.
 - Copy paste new tab: the app is now instantly showing useful content. This can be extremely impactful on a bigger application with larger or slower chunks of static content.
