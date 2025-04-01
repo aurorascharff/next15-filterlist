@@ -126,7 +126,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Improve Speed Index with Partial Pre-rendering
 
-- Let's explore some experimental upcoming features in Next.js that I am looking forward to.
+- Let's explore some canary upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
 - This could be static data that we can revalidate on a time based interval using for example fetch options, or, the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
 - (Turn on DynamicIO: remove all connection() from the data fetches. Dynamic by default. Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering.)
