@@ -56,7 +56,7 @@ When using a real database with for example postgresql or sqlserver, you need to
 npm run prisma.migrate
 ```
 
-NB! The follopwing option, used in `task.ts`, for case insensitivity is not supported nor needed with i.e sqlite:
+NB! The following option, used in `task.ts`, for case insensitivity is not supported nor needed with i.e sqlite:
 
 ```ts
 filter.q.toLowerCase(), mode: 'insensitive' }
