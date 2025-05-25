@@ -129,6 +129,7 @@ Let's continue to improve the UX, it is still not good here.
 - Let's explore some canary upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
 - This could be static data that we can revalidate on a time based interval using for example fetch options, or, the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
+- (Although, keep it mind that it's not relevant to user speficic data, this is mostly a showcase of the feature.)
 - (Turn on DynamicIO: remove all connection() from the data fetches. Dynamic by default. Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering.)
 - (Show the result: We are getting errors in the application! These will continue to improve. Without dynamicIO, you would not be notified of this, and espeically new Next.js devs did not know why their navigations felt slow or how to start debugging it. If you didn't do it right from the start, it would be very hard to debug and improve later.)
 - Add "use cache" and cacheLife("days"). Remove await connection.
