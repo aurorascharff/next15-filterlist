@@ -23,7 +23,7 @@
     "clsx": "^2.1.1",
     "eslint": "9.27.0",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
-    "next": "^15.4.0-canary.50",
+    "next": "^15.3.2",
     "postcss": "^8.5.3",
     "prisma": "^6.8.2",
     "react": "^19.1.0",
