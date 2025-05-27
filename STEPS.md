@@ -126,7 +126,7 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Improve Speed Index with Partial Pre-rendering
 
-- Let's explore some canary upcoming features in Next.js that I am looking forward to.
+- Let's try out some upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
 - This could be static data that we can revalidate on a time based interval using for example fetch options, or, the experimental Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
 - (Although, keep it mind that it's not relevant to user speficic data, this is mostly a showcase of the feature.)
@@ -135,7 +135,7 @@ Let's continue to improve the UX, it is still not good here.
 - Add "use cache" and cacheLife("days"). Remove await connection.
 - Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project. (The error is now gone).
 - Now, it will stream the first time, then second time it's cached!
-- I also want to use Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
+- I also want to use the canary feature Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
 - (Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering).
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
 - Open the second tab in new window. Reload it.
