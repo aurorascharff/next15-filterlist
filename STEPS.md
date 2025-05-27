@@ -111,7 +111,7 @@ Let's continue to improve the UX, it is still not good here.
 ## Turn on staleTimes in next.config.js
 
 - Enable more caching.
-- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh. In the future, we will be able to use the new "use cache" directive in Next.js for more granular control, but it's not ready yet.
+- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh.
 - Enable staleTimes in next.config.js. This will cache the rsc payload on the client for the route page.tsx, the table. Refresh page.
 - Show the result. Click the same twice. Now we dont have to regenerate the server component every time.
 
@@ -126,16 +126,15 @@ Let's continue to improve the UX, it is still not good here.
 
 ## Improve Speed Index with Partial Pre-rendering
 
-- Let's explore some canary upcoming features in Next.js that I am looking forward to.
+- Let's try out some upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
-- This could be static data that we can revalidate on a time based interval using for example fetch options, or, the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
+- This could be static data that we can revalidate on a time based interval or on demand. Wasting resources and time. Static is the fastest.
 - (Although, keep it mind that it's not relevant to user speficic data, this is mostly a showcase of the feature.)
-- (Turn on DynamicIO: remove all connection() from the data fetches. Dynamic by default. Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering.)
-- (Show the result: We are getting errors in the application! These will continue to improve. Without dynamicIO, you would not be notified of this, and espeically new Next.js devs did not know why their navigations felt slow or how to start debugging it. If you didn't do it right from the start, it would be very hard to debug and improve later.)
+- Turn on expermiental useCache in the config.
 - Add "use cache" and cacheLife("days"). Remove await connection.
-- Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project. (The error is now gone).
 - Now, it will stream the first time, then second time it's cached!
-- I also want to use Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
+- Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project.
+- I also want to use the canary feature Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
 - (Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering).
 - Turn on partial prerendering in next.config.js. Also turn on CSS inlining for even more speed. I need to make a production build, I've already deployed it so we can see it.
 - Open the second tab in new window. Reload it.
