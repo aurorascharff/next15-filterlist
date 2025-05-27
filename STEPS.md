@@ -111,7 +111,7 @@ Let's continue to improve the UX, it is still not good here.
 ## Turn on staleTimes in next.config.js
 
 - Enable more caching.
-- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh. In the future, we will be able to use the new "use cache" directive in Next.js for more granular control, but it's not ready yet.
+- Every time we click a tab, filter, or search, we are rerunning the page.tsx table on the server, with the data fetch. We can resuse this, my data doesnt need to be that fresh.
 - Enable staleTimes in next.config.js. This will cache the rsc payload on the client for the route page.tsx, the table. Refresh page.
 - Show the result. Click the same twice. Now we dont have to regenerate the server component every time.
 
@@ -128,7 +128,7 @@ Let's continue to improve the UX, it is still not good here.
 
 - Let's explore some canary upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
-- This could be static data that we can revalidate on a time based interval using for example fetch options, or, the new Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
+- This could be static data that we can revalidate on a time based interval using for example fetch options, or, the experimental Next.js directive "use cache" and its related APIs. Wasting resources and time. Static is the fastest.
 - (Although, keep it mind that it's not relevant to user speficic data, this is mostly a showcase of the feature.)
 - (Turn on DynamicIO: remove all connection() from the data fetches. Dynamic by default. Suspense Search because SearchParams with skeleton because SearchParams opt into dynamic rendering.)
 - (Show the result: We are getting errors in the application! These will continue to improve. Without dynamicIO, you would not be notified of this, and espeically new Next.js devs did not know why their navigations felt slow or how to start debugging it. If you didn't do it right from the start, it would be very hard to debug and improve later.)
