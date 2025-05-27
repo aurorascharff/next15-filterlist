@@ -26,7 +26,7 @@ export default async function TabPage({ params, searchParams }: PageProps) {
     notFound();
   }
 
-  const data = await getTasks({
+  const tasks = await getTasks({
     categories: Array.isArray(category) ? category.map(Number) : category ? [Number(category)] : undefined,
     q,
     status: tab,
@@ -45,7 +45,7 @@ export default async function TabPage({ params, searchParams }: PageProps) {
           </tr>
         </thead>
         <tbody>
-          {data.map(task => {
+          {tasks.map(task => {
             const color = getCategoryColor(task.categoryId);
             return (
               <tr key={task.id}>
@@ -65,7 +65,7 @@ export default async function TabPage({ params, searchParams }: PageProps) {
               </tr>
             );
           })}
-          {data.length === 0 && (
+          {tasks.length === 0 && (
             <tr>
               <td className="italic" colSpan={5}>
                 No tasks found
