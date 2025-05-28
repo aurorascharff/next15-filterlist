@@ -128,10 +128,10 @@ Let's continue to improve the UX, it is still not good here.
 
 - Let's try out some upcoming features in Next.js that I am looking forward to.
 - We can still improve the speed. Show project details in layout. Actually, we are dynamically fetching this project info data on every page load even though it very rarely changes.
-- This could be static data that we can revalidate on a time based interval or on demand. Wasting resources and time. Static is the fastest.
+- This could be cached data that we can revalidate on a time based interval or on demand. Wasting resources and time. Static is the fastest.
 - (Although, keep it mind that it's not relevant to user speficic data, this is mostly a showcase of the feature.)
-- Turn on expermiental useCache in the config.
 - Add "use cache" and cacheLife("days"). Remove await connection.
+- Turn on expermiental useCache in the config.
 - Now, it will stream the first time, then second time it's cached!
 - Can revalidate with cacheTag (write function) in server actions or API endpoints, if for example I were to update a project.
 - I also want to use the canary feature Partial Prerendering. This will allow me to partially the layout as static, and prerender all the cached data in the app. Prevously determined by suspense boundaries, now PPR is determined by your cache boundaries.
