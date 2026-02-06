@@ -5,6 +5,7 @@ import { getTasks } from '@/data/services/task';
 import { taskStatusSchema, type TaskStatus } from '@/types/task';
 import { cn } from '@/utils/cn';
 import { getCategoryColor } from '@/utils/getCategoryColor';
+import Filters from './Filters';
 
 type PageProps = {
   params: Promise<{
@@ -20,6 +21,15 @@ export default async function TabPage({ params, searchParams }: PageProps) {
   const { tab } = await params;
   const { q, category } = await searchParams;
 
+  return (
+    <>
+      <Filters tab={tab} q={q} category={category} />
+      <Tabs tab={tab} q={q} category={category} />
+    </>
+  );
+}
+
+async function Tabs({ tab, q, category }: { tab: TaskStatus; q?: string; category?: string | string[] }) {
   try {
     taskStatusSchema.parse(tab);
   } catch {
