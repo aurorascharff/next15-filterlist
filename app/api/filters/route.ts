@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { slow } from '@/utils/slow';
+import type { NextRequest } from 'next/server';
 
 // Pretend filter options that vary based on category
 const filterOptionsByCategory: Record<string, string[]> = {
@@ -20,7 +21,13 @@ export async function GET(request: NextRequest) {
 
   const options =
     categories.length > 0
-      ? [...new Set(categories.flatMap(cat => filterOptionsByCategory[cat] || filterOptionsByCategory.default))]
+      ? Array.from(
+          new Set(
+            categories.flatMap(cat => {
+              return filterOptionsByCategory[cat] || filterOptionsByCategory.default;
+            }),
+          ),
+        )
       : filterOptionsByCategory.default;
 
   return NextResponse.json({ options });
