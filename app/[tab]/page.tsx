@@ -25,7 +25,7 @@ export default async function TabPage({ params, searchParams }: PageProps) {
   return (
     <>
       <Filters />
-      {/* <Suspense fallback={<div className="w-fit rounded border border-gray px-4 py-2 opacity-50">Loading...</div>}>
+      {/* <Suspense fallback={<FiltersSkeleton />}>
         <FiltersServer tab={tab} q={q} category={category} />
       </Suspense> */}
       <Suspense fallback={<Skeleton />}>

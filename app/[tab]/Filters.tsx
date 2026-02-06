@@ -23,7 +23,7 @@ export default function Filters() {
         Options for {categories.length > 0 ? `categories ${categories.join(', ')}` : 'all'}
       </label>
       {isLoading ? (
-        <div className="w-fit rounded border border-gray px-4 py-2 opacity-50">Loading...</div>
+        <FiltersSkeleton />
       ) : (
         <div className="flex gap-2">
           {data?.options.map(option => {
@@ -37,4 +37,8 @@ export default function Filters() {
       )}
     </div>
   );
+}
+
+export function FiltersSkeleton() {
+  return <div className="w-fit rounded border border-gray px-4 py-2 opacity-50">Loading...</div>;
 }
