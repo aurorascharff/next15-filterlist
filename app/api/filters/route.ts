@@ -1,15 +1,6 @@
 import { NextResponse } from 'next/server';
-import { slow } from '@/utils/slow';
+import { getDynamicOptions } from '@/data/services/dynamicOptions';
 import type { NextRequest } from 'next/server';
-
-// Pretend filter options that vary based on category
-const filterOptionsByCategory: Record<string, string[]> = {
-  '1': ['High Priority', 'Medium Priority', 'Low Priority'],
-  '2': ['This Week', 'This Month', 'This Quarter'],
-  '3': ['Assigned to Me', 'Unassigned', 'Team Tasks'],
-  '4': ['Blocked', 'On Track', 'At Risk'],
-  default: ['All', 'Recent', 'Favorites'],
-};
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -17,18 +8,7 @@ export async function GET(request: NextRequest) {
 
   console.log('GET /api/filters', { categories });
 
-  await slow(3000);
-
-  const options =
-    categories.length > 0
-      ? Array.from(
-          new Set(
-            categories.flatMap(cat => {
-              return filterOptionsByCategory[cat] || filterOptionsByCategory.default;
-            }),
-          ),
-        )
-      : filterOptionsByCategory.default;
+  const options = await getDynamicOptions(categories);
 
   return NextResponse.json({ options });
 }

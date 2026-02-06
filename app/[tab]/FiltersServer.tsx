@@ -1,32 +1,9 @@
+import { getDynamicOptions } from '@/data/services/dynamicOptions';
 import type { TaskStatus } from '@/types/task';
-import { slow } from '@/utils/slow';
-
-// Pretend filter options that vary based on category
-const filterOptionsByCategory: Record<string, string[]> = {
-  '1': ['High Priority', 'Medium Priority', 'Low Priority'],
-  '2': ['This Week', 'This Month', 'This Quarter'],
-  '3': ['Assigned to Me', 'Unassigned', 'Team Tasks'],
-  '4': ['Blocked', 'On Track', 'At Risk'],
-  default: ['All', 'Recent', 'Favorites'],
-};
-
-async function getFilterOptions(categories: string[]): Promise<string[]> {
-  await slow(4000);
-
-  return categories.length > 0
-    ? Array.from(
-        new Set(
-          categories.flatMap(cat => {
-            return filterOptionsByCategory[cat] || filterOptionsByCategory.default;
-          }),
-        ),
-      )
-    : filterOptionsByCategory.default;
-}
 
 export default async function Filters({ category }: { tab: TaskStatus; q?: string; category?: string | string[] }) {
   const categories = Array.isArray(category) ? category : category ? [category] : [];
-  const options = await getFilterOptions(categories);
+  const options = await getDynamicOptions(categories);
 
   return (
     <div className="flex flex-col gap-2">
