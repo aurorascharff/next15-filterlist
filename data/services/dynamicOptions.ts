@@ -10,7 +10,7 @@ const dynamicOptionsByCategory: Record<string, string[]> = {
 };
 
 export async function getDynamicOptions(categories: string[]): Promise<string[]> {
-  await slow(3000);
+  await slow(2000);
 
   return categories.length > 0
     ? Array.from(
