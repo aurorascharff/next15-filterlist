@@ -39,8 +39,23 @@ async function Tabs({ tab, q, category }: { tab: TaskStatus; q?: string; categor
     notFound();
   }
 
+  // Handle comma-separated values from nuqs
+  const categoryArray = Array.isArray(category)
+    ? category.flatMap(c => {
+        return c.split(',');
+      })
+    : category
+      ? category.split(',')
+      : [];
+  const categories =
+    categoryArray.length > 0
+      ? categoryArray.map(Number).filter(n => {
+          return !isNaN(n);
+        })
+      : undefined;
+
   const tasks = await getTasks({
-    categories: Array.isArray(category) ? category.map(Number) : category ? [Number(category)] : undefined,
+    categories,
     q,
     status: tab,
   });
