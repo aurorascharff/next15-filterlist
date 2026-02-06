@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { ActionIcon } from '@/components/ui/icons/ActionIcon';
 import { getTasks } from '@/data/services/task';
 import { taskStatusSchema, type TaskStatus } from '@/types/task';
@@ -23,10 +23,10 @@ export default async function TabPage({ params, searchParams }: PageProps) {
 
   return (
     <>
-      <Suspense fallback={<div className="animate-pulse">Loading filters...</div>}>
-        <Filters />
-        {/* <FiltersServer tab={tab} q={q} category={category} /> */}
-      </Suspense>
+      <Filters />
+      {/* <Suspense fallback={<div className="animate-pulse">Loading filters...</div>}>
+        <FiltersServer tab={tab} q={q} category={category} />
+      </Suspense> */}
       <Tabs tab={tab} q={q} category={category} />
     </>
   );
