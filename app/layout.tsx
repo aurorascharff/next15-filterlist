@@ -1,6 +1,7 @@
 import './globals.css';
 
 import { Geist } from 'next/font/google';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { Suspense } from 'react';
 import CategoryFilter, { CategoryFilterSkeleton } from '@/components/CategoryFilter';
 import LoadTime from '@/components/LoadTime';
@@ -26,29 +27,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={cn(GeistSans.className, 'flex flex-col px-4 py-6 sm:px-16 sm:py-16 xl:px-48 2xl:px-96')}>
-        <div className="group flex flex-col gap-10">
-          <div className="flex flex-col gap-6">
-            <h1>Project information</h1>
-            <Suspense fallback={<ProjectInfoSkeleton />}>
-              <ProjectInfo />
+        <NuqsAdapter>
+          <div className="group flex flex-col gap-10">
+            <div className="flex flex-col gap-6">
+              <h1>Project information</h1>
+              <Suspense fallback={<ProjectInfoSkeleton />}>
+                <ProjectInfo />
+              </Suspense>
+            </div>
+            <div className="flex flex-col gap-6">
+              <h2>Task list</h2>
+              <Suspense fallback={<StatusTabsSkeleton />}>
+                <StatusTabs taskSummaryPromise={taskSummary} />
+              </Suspense>
+            </div>
+            <div className="h-[1px] bg-primary" />
+            <Suspense fallback={<SearchSkeleton />}>
+              <Search />
             </Suspense>
-          </div>
-          <div className="flex flex-col gap-6">
-            <h2>Task list</h2>
-            <Suspense fallback={<StatusTabsSkeleton />}>
-              <StatusTabs taskSummaryPromise={taskSummary} />
+            <Suspense fallback={<CategoryFilterSkeleton />}>
+              <CategoryFilter categoriesPromise={categories} />
             </Suspense>
+            {children}
           </div>
-          <div className="h-[1px] bg-primary" />
-          <Suspense fallback={<SearchSkeleton />}>
-            <Search />
-          </Suspense>
-          <Suspense fallback={<CategoryFilterSkeleton />}>
-            <CategoryFilter categoriesPromise={categories} />
-          </Suspense>
-          {children}
-        </div>
-        <LoadTime />
+          <LoadTime />
+        </NuqsAdapter>
       </body>
     </html>
   );

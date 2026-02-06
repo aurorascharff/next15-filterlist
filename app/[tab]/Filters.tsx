@@ -1,6 +1,6 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs';
 import useSWR from 'swr';
 
 const fetcher = (url: string) => {
@@ -10,8 +10,7 @@ const fetcher = (url: string) => {
 };
 
 export default function Filters() {
-  const searchParams = useSearchParams();
-  const categories = searchParams.getAll('category');
+  const [categories] = useQueryState('category', parseAsArrayOf(parseAsString).withDefault([]));
   const params = new URLSearchParams();
   categories.forEach(c => {
     return params.append('category', c);

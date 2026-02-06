@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { use, useOptimistic, useTransition } from 'react';
+import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs';
+import React, { use, useTransition } from 'react';
 import ToggleGroup from './ui/ToggleGroup';
 import type { Category } from '@prisma/client';
 
@@ -11,10 +11,11 @@ type Props = {
 
 export default function CategoryFilter({ categoriesPromise }: Props) {
   const categoriesMap = use(categoriesPromise);
-  const searchParams = useSearchParams();
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [optimisticCategories, setOptimisticCategories] = useOptimistic(searchParams.getAll('category'));
+  const [categories, setCategories] = useQueryState(
+    'category',
+    parseAsArrayOf(parseAsString).withDefault([]).withOptions({ shallow: false, startTransition }),
+  );
 
   return (
     <div data-pending={isPending ? '' : undefined}>
@@ -26,19 +27,9 @@ export default function CategoryFilter({ categoriesPromise }: Props) {
             value: category.id.toString(),
           };
         })}
-        selectedValues={optimisticCategories}
+        selectedValues={categories}
         onToggle={newCategories => {
-          const params = new URLSearchParams(searchParams);
-          params.delete('category');
-          newCategories.forEach(category => {
-            return params.append('category', category);
-          });
-          startTransition(() => {
-            setOptimisticCategories(newCategories);
-            router.push(`?${params.toString()}`, {
-              scroll: false,
-            });
-          });
+          setCategories(newCategories.length > 0 ? newCategories : null);
         }}
       />
     </div>
