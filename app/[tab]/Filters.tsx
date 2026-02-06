@@ -1,7 +1,7 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
-import type { TaskStatus } from '@/types/task';
 
 const fetcher = (url: string) => {
   return fetch(url).then(res => {
@@ -9,13 +9,14 @@ const fetcher = (url: string) => {
   });
 };
 
-export default function Filters({ category }: { tab: TaskStatus; q?: string; category?: string | string[] }) {
-  const categories = Array.isArray(category) ? category : category ? [category] : [];
-  const searchParams = new URLSearchParams();
+export default function Filters() {
+  const searchParams = useSearchParams();
+  const categories = searchParams.getAll('category');
+  const params = new URLSearchParams();
   categories.forEach(c => {
-    return searchParams.append('category', c);
+    return params.append('category', c);
   });
-  const { data, isLoading } = useSWR<{ options: string[] }>(`/api/filters?${searchParams.toString()}`, fetcher);
+  const { data, isLoading } = useSWR<{ options: string[] }>(`/api/filters?${params.toString()}`, fetcher);
 
   return (
     <div className="flex flex-col gap-2">

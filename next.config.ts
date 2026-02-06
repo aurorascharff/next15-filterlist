@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   experimental: {
     inlineCss: true,
     ppr: true,
-    staleTimes: {
-      dynamic: 30,
-    },
+    // staleTimes: {
+    //   dynamic: 30,
+    // },
     useCache: true,
   },
   redirects: async () => {

@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 
   console.log('GET /api/filters', { categories });
 
-  await slow(1000);
+  await slow(3000);
 
   const options =
     categories.length > 0
