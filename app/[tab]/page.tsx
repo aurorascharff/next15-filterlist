@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
-import React from 'react';
+import React, { Suspense } from 'react';
+import Skeleton from '@/components/ui/Skeleton';
 import { ActionIcon } from '@/components/ui/icons/ActionIcon';
 import { getTasks } from '@/data/services/task';
 import { taskStatusSchema, type TaskStatus } from '@/types/task';
@@ -24,10 +25,12 @@ export default async function TabPage({ params, searchParams }: PageProps) {
   return (
     <>
       <Filters />
-      {/* <Suspense fallback={<div className="animate-pulse">Loading filters...</div>}>
+      {/* <Suspense fallback={<div className="w-fit rounded border border-gray px-4 py-2 opacity-50">Loading...</div>}>
         <FiltersServer tab={tab} q={q} category={category} />
       </Suspense> */}
-      <Tabs tab={tab} q={q} category={category} />
+      <Suspense fallback={<Skeleton />}>
+        <Tabs tab={tab} q={q} category={category} />
+      </Suspense>
     </>
   );
 }
