@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma.studio": "npx prisma studio",
+    "prisma.studio": "prisma studio",
     "prisma.seed": "tsx prisma/seed.ts",
-    "prisma.migrate": "npx prisma migrate dev",
-    "prisma.push": "npx prisma db push"
+    "prisma.migrate": "prisma migrate dev",
+    "prisma.push": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
@@ -48,5 +48,6 @@
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tsx": "^4.19.4"
-  }
+  },
+  "packageManager": "pnpm@10.29.2"
 }
