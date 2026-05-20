@@ -3,6 +3,8 @@ minimumReleaseAgeExclude:
   - '@next/*'
   - eslint-config-next
   - next
+overrides:
+  postcss: 8.5.14
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
