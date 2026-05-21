@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma.studio": "npx prisma studio",
+    "prisma.studio": "prisma studio",
     "prisma.seed": "tsx prisma/seed.ts",
-    "prisma.migrate": "npx prisma migrate dev",
-    "prisma.push": "npx prisma db push"
+    "prisma.migrate": "prisma migrate dev",
+    "prisma.push": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
@@ -23,15 +23,16 @@
     "clsx": "^2.1.1",
     "eslint": "9.27.0",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
-    "next": "15.6.0-canary.58",
-    "postcss": "^8.5.3",
+    "next": "15.6.0-canary.61",
+    "postcss": "^8.5.10",
     "prisma": "^6.8.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "server-only": "^0.0.1",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "3.4.17",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "zod": "3.25.76"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.9",
@@ -40,7 +41,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/eslint": "^9.6.1",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
-    "eslint-config-next": "15.3.2",
+    "eslint-config-next": "15.6.0-canary.61",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-autofix": "^2.2.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
@@ -48,5 +49,6 @@
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tsx": "^4.19.4"
-  }
+  },
+  "packageManager": "pnpm@10.29.2"
 }
