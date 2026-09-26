@@ -2,12 +2,11 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   experimental: {
+    agenticAutoUpgrade: 'latest',
     inlineCss: true,
-    ppr: true,
     staleTimes: {
       dynamic: 30,
     },
-    useCache: true,
   },
   redirects: async () => {
     return [

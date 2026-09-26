@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prisma.studio": "prisma studio",
     "prisma.seed": "tsx prisma/seed.ts",
     "prisma.migrate": "prisma migrate dev",
@@ -15,19 +15,19 @@
   "dependencies": {
     "@prisma/client": "^6.8.2",
     "@types/node": "22.15.21",
-    "@types/react": "19.1.5",
-    "@types/react-dom": "19.1.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "autoprefixer": "10.4.21",
     "babel-plugin-react-compiler": "^19.1.0-rc.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "eslint": "9.27.0",
+    "eslint": "9.39.5",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
-    "next": "15.6.0-canary.61",
+    "next": "16.4.0-canary.48",
     "postcss": "^8.5.10",
     "prisma": "^6.8.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "server-only": "^0.0.1",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "3.4.17",
@@ -41,7 +41,8 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/eslint": "^9.6.1",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
-    "eslint-config-next": "15.6.0-canary.61",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint-config-next": "16.4.0-canary.48",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-autofix": "^2.2.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
@@ -50,5 +51,14 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tsx": "^4.19.4"
   },
-  "packageManager": "pnpm@10.29.2"
+  "packageManager": "pnpm@10.29.2",
+  "overrides": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "zod-validation-error": "^4.0.0"
+    }
+  }
 }
